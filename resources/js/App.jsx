@@ -12,10 +12,10 @@ export default function App() {
                 <Navbar />
             </div>
             <div className="row">
-                <div className="col-1">
+                <div className="col-xl-1 col-md-2 col-sm-3">
                     <Sidebar />
                 </div>
-                <div className="col-8">
+                <div className="col-xl-11 col-md-10 col-sm-8">
                     <Router>
                         <Routes>
                             <Route path="/" element={<Home />} />
