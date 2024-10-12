@@ -13,6 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->appendToGroup('web', ['auth']);
+        $middleware->appendToGroup('api', ['auth']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
