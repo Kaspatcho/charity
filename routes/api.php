@@ -1,13 +1,6 @@
 <?php
 
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('/categories', function (Request $request) {
-    return Category::query()->where('user_id', $request->user()->id)->get();
-});
+Route::get('/transactions', [ ApiController::class, 'transactions' ]);
