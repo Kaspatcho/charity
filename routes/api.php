@@ -1,14 +1,13 @@
 <?php
 
-use App\Models\User;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/users/{user}', function (User $user) {
-    return $user->only(['id', 'name', 'email', 'currency']);
+Route::get('/user', function (Request $request) {
+    return $request->user();
 });
 
-Route::get('/users/{user}/categories', function (User $user) {
-    return $user->categories()->get();
+Route::get('/categories', function (Request $request) {
+    return Category::query()->where('user_id', $request->user()->id)->get();
 });
-
-Route::match(['get', 'post', 'put', 'delete'], '/{path?}', fn() => abort(404));
