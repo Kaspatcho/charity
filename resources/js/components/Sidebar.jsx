@@ -10,6 +10,10 @@ export default function Sidebar() {
             <a href="/dashboard">
                 <p className="p-2">Dashboard</p>
             </a>
+
+            <a href="/transactions">
+                <p className="p-2">Transactions</p>
+            </a>
         </div>
     );
 }

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
+import Transactions from './pages/Transactions';
 
 export default function App() {
     return (
@@ -20,6 +21,7 @@ export default function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/transactions" element={<Transactions />} />
                         </Routes>
                     </Router>
                 </div>
