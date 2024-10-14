@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
         User::factory()->create([
             'email' => 'test@example.com',
             'password' => '12345',
+            'currency' => 'BRL',
         ]);
 
         User::query()->inRandomOrder()->each(function (User $user) {
