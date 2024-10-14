@@ -37,7 +37,7 @@ export default function Dashboard() {
                     .map((row, index) =>
                         <div className='mb-3' key={'div' + index}>
                             <div className="d-flex flex-row justify-content-between align-items-center">
-                                <h3 key={'h3' + index}>{row.category.name}</h3>
+                                <h3 key={'h3' + index}>{row.category.name} ({row.category.type == 'expense' ? 'orçamento' : 'meta'})</h3>
                                 <span className='text-secondary'>
                                     {
                                         parseFloat(row.total).toLocaleString('pt-BR', {
