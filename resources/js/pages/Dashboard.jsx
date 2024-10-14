@@ -20,7 +20,7 @@ export default function Dashboard() {
             <div className='d-flex flex-column'>
                 <div className="d-flex flex-row justify-content-between align-items-center mb-3 mt-2">
                     <h3>Saldo:</h3>
-                    <h5>
+                    <h5 className={balance < 0 ? 'text-danger' : ''}>
                         {
                             parseFloat(balance).toLocaleString('pt-BR', {
                                 style: "currency",
