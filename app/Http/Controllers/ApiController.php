@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Budget;
 use App\Models\Category;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -11,17 +13,11 @@ class ApiController extends Controller
     public function transactions(Request $request)
     {
         return Transaction::with([
-            'category:id,name as category,type',
+            'category:id,name,type',
             'author:id,currency'
         ])->where('user_id', $request->user()->id)
             ->orderByDesc('date')
-            ->get()
-            ->map(fn($t) => [
-                ...$t->only(['id', 'amount', 'date', 'description', 'recurring']),
-                'category' => $t->category->category,
-                'type' => $t->category->type,
-                'currency' => $t->author->currency,
-            ]);
+            ->get();
     }
 
     public function categories(Request $request)
@@ -29,5 +25,39 @@ class ApiController extends Controller
         return Category::query()
         ->where('user_id', $request->user()->id)
         ->get(['name', 'type']);
+    }
+
+    public function budgets(Request $request)
+    {
+        return Budget::with(['category:id,name,type', 'author:id,currency'])
+        ->where('user_id', $request->user()->id)
+        ->get();
+    }
+
+    public function budget_progress(Request $request)
+    {
+        /** @var User $user */
+        $user = User::find($request->user()->id);
+        return $user->budgets()
+            ->with(['category', 'author'])
+            ->get()
+            ->map(function(Budget $budget) {
+                $amount = Transaction::query()
+                    ->where('category_id', $budget->category_id)
+                    ->whereBetween('date', [$budget->start_date, $budget->end_date])
+                    ->sum('amount');
+
+                return [...$budget->toArray(), 'total' => $amount];
+            });
+    }
+
+    public function balance(Request $request)
+    {
+        /** @var User $user */
+        $user = User::find($request->user()->id);
+        return $user->transactions()->with('category:id,type')
+            ->get()
+            ->map(fn(Transaction $t) => $t->category->type == 'expense' ? -$t->amount : $t->amount)
+            ->sum();
     }
 }

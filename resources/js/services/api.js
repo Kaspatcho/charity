@@ -7,3 +7,15 @@ export async function getTransactions() {
 export async function getCategories() {
     return (await axios.get('/api/categories')).data;
 }
+
+export async function getBudgets() {
+    return (await axios.get('/api/budgets')).data;
+}
+
+export async function getBudgetProgress() {
+    return (await axios.get('/api/budgets/progress')).data;
+}
+
+export async function getBalance() {
+    return (await axios.get('/api/balance')).data;
+}
