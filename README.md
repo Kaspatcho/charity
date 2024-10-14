@@ -1,66 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gerenciador de Finanças Pessoais
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este é um projeto de aplicação web para gerenciar finanças pessoais,
+que permite rastrear receitas e despesas, definir orçamentos e visualizar tendências de gastos.
+A aplicação é construída com **Laravel** no backend, **React** no frontend,
+e utiliza **MySQL** para armazenamento de dados e **Redis** para cache.
+A configuração do ambiente é feita com **Docker Compose**, com serviços para o aplicativo Laravel,
+banco de dados MySQL e Redis.
+#
 
-## About Laravel
+## Funcionalidades
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Registro e autenticação de usuários.
+- Rastreamento de receitas e despesas com categorias personalizadas.
+- Definição de orçamentos por categoria.
+- Painel de controle com visualizações de tendências financeiras.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Estrutura do Projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel**: Backend da aplicação, gerenciando a lógica de negócios e as APIs.
+- **React**: Frontend responsável pela interface do usuário e visualizações.
+- **MySQL**: Banco de dados relacional para armazenamento de usuários, transações e orçamentos.
+- **Redis**: Utilizado para cache.
 
-## Learning Laravel
+## Pré-requisitos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Certifique-se de ter os seguintes softwares instalados:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Docker**: [Instalar Docker](https://docs.docker.com/get-docker/)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Configuração do Ambiente
 
-## Laravel Sponsors
+1. **Clone o repositório do projeto:**
+```bash
+git clone https://github.com/Kaspatcho/charity.git
+cd charity
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Copie o arquivo `.env.example` para `.env` e ajuste as configurações, se necessário**:
+```bash
+cp .env.example .env
+```
 
-### Premium Partners
+3. **Atualize o arquivo .env com as credenciais do banco de dados**:
+```makefile
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=nome_do_banco
+DB_USERNAME=usuario
+DB_PASSWORD=senha
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. **Construa e inicie os containers com o Docker Compose**:
+```bash
+docker compose up -d
+```
 
-## Contributing
+5. **Instale as dependências do Laravel**:
+```bash
+docker compose exec web composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Gere a chave da aplicação Laravel**:
+```bash
+docker-compose exec web php artisan key:generate
+```
 
-## Code of Conduct
+7. **Execute as migrações para configurar o banco de dados**:
+```bash
+docker-compose exec web php artisan migrate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+8. **Instale as dependências do frontend (React)**:
+```bash
+npm install
+```
 
-## Security Vulnerabilities
+9. **Inicie o servidor de desenvolvimento do React**:
+```bash
+npm start
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Utilização
+A aplicação estará disponível em:
+- Frontend: http://localhost:8080
 
-## License
+## Estrutura do Docker Compose
+O arquivo docker-compose.yml configura três serviços:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **web**: Serviço para a aplicação Laravel.
+- **mysql**: Banco de dados MySQL.
+- **redis**: Serviço de cache e mensagens em tempo real.
+
+## Comandos Úteis
+### parar os containers
+```bash
+docker compose down
+```
+
+### acessar o container do laravel
+```bash
+docker compose exec web bash
+```
+
+### executar os testes do laravel
+```bash
+docker compose exec web php artisan test
+```
+
+### acessar [laravel tinker](https://laravel.com/docs/11.x/artisan#tinker)
+```bash
+docker compose exec web php artisan tinker
+```
