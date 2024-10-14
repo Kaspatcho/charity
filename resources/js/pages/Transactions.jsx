@@ -6,25 +6,38 @@ export default function Transactions() {
     const [transactions, setTransactions] = useState([]);
     useEffect(() => {
         async function fetchData() {
-            const t = await getTransactions()
-            setTransactions(t.map(v => {
-                let amount = v.type == 'expense' ? -v.amount : v.amount
-                amount = parseFloat(amount).toLocaleString('pt-BR', { style: "currency", currency: v.currency, });
-                return {
-                    ...v, recurring: v.recurring ? 'SIM' : 'NÃO',
-                    type: v.type == 'expense' ? 'Despesa' : 'Receita',
-                    amount,
-                }
-            }))
+            const transactions = await getTransactions()
+            setTransactions(transactions)
         }
         fetchData()
     }, []);
 
     return (
-        <Table
-            head={['Categoria', 'Tipo', 'Valor', 'Data', 'Recorrente?', 'Descrição']}
-            keys={['category', 'type', 'amount', 'date', 'recurring', 'description']}
-            data={transactions}
-        />
+        <Table head={['Categoria', 'Tipo', 'Valor', 'Data', 'Recorrente?', 'Descrição']}>
+            {
+                transactions.map((row, index) =>
+                    <tr key={index}>
+                        <td key={`category${index}`}>{row.category}</td>
+                        <td key={`type${index}`}>
+                            {row.type == 'expense' ? 'Despesa' : 'Receita'}
+                        </td>
+                        <td key={`amount${index}`} style={{ color: row.type == 'expense' ? 'red' : 'black' }}>
+                            {row.type == 'expense' && '-'}
+                            {
+                                parseFloat(row.amount).toLocaleString('pt-BR',{
+                                    style: "currency",
+                                    currency: row.currency,
+                                })
+                            }
+                        </td>
+                        <td key={`date${index}`}>{row.date}</td>
+                        <td key={`recurring${index}`}>
+                            {row.recurring ? 'SIM' : 'NÃO'}
+                        </td>
+                        <td key={`description${index}`}>{row.description}</td>
+                    </tr>
+                )
+            }
+        </Table>
     );
 }
