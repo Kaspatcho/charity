@@ -27,6 +27,7 @@ banco de dados MySQL e Redis.
 Certifique-se de ter os seguintes softwares instalados:
 
 - **Docker**: [Instalar Docker](https://docs.docker.com/get-docker/)
+- **Nodejs**: [Instalar Nodejs](https://nodejs.org/en/download/package-manager)
 
 ## Configuração do Ambiente
 
@@ -78,7 +79,7 @@ npm install
 
 9. **Inicie o servidor de desenvolvimento do React**:
 ```bash
-npm start
+npm run dev
 ```
 
 ## Utilização
