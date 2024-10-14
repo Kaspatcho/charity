@@ -4,7 +4,7 @@ import { getBudgetProgress, getBalance } from '../services/api';
 
 export default function Dashboard() {
     const [budgets, setBudgets] = useState([]);
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState({});
     useEffect(() => {
         async function fetchData() {
             const budgets = await getBudgetProgress()
@@ -20,11 +20,11 @@ export default function Dashboard() {
             <div className='d-flex flex-column'>
                 <div className="d-flex flex-row justify-content-between align-items-center mb-3 mt-2">
                     <h3>Saldo:</h3>
-                    <h5 className={balance < 0 ? 'text-danger' : ''}>
+                    <h5 className={balance.amount < 0 ? 'text-danger' : ''}>
                         {
-                            parseFloat(balance).toLocaleString('pt-BR', {
+                            parseFloat(balance.amount ?? 0).toLocaleString('pt-BR', {
                                 style: "currency",
-                                currency: budgets[0]?.author.currency ?? 'USD',
+                               currency: balance.currency ?? 'NON',
                             })
                         }
                     </h5>

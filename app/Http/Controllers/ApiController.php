@@ -76,13 +76,18 @@ class ApiController extends Controller
     public function balance(Request $request)
     {
         $key = 'balance_' . $request->user()->id;
-        return Cache::remember($key, 30, function () use ($request) {
+        return Cache::remember($key, 5, function () use ($request) {
             /** @var User $user */
             $user = User::find($request->user()->id);
-            return $user->transactions()->with('category:id,type')
+            $balance = $user->transactions()->with('category:id,type')
                 ->get()
                 ->map(fn (Transaction $t) => $t->category->type == 'expense' ? -$t->amount : $t->amount)
                 ->sum();
+            
+            return [
+                'currency' => $user->currency,
+                'amount' => $balance,
+            ];
         });
     }
 }
