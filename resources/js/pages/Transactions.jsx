@@ -13,20 +13,22 @@ export default function Transactions() {
     }, []);
 
     return (
-        <Table head={['Categoria', 'Tipo', 'Valor', 'Data', 'Recorrente?', 'Descrição']}>
+        <Table title='Transações Recentes'
+            head={['Categoria', 'Tipo', 'Valor', 'Data', 'Recorrente?', 'Descrição']}
+        >
             {
                 transactions.map((row, index) =>
                     <tr key={index}>
-                        <td key={`category${index}`}>{row.category}</td>
+                        <td key={`category${index}`}>{row.category.name}</td>
                         <td key={`type${index}`}>
-                            {row.type == 'expense' ? 'Despesa' : 'Receita'}
+                            {row.category.type == 'expense' ? 'Despesa' : 'Receita'}
                         </td>
-                        <td key={`amount${index}`} style={{ color: row.type == 'expense' ? 'red' : 'black' }}>
-                            {row.type == 'expense' && '-'}
+                        <td key={`amount${index}`} style={{ color: row.category.type == 'expense' ? 'red' : 'black' }}>
+                            {row.category.type == 'expense' && '-'}
                             {
                                 parseFloat(row.amount).toLocaleString('pt-BR',{
                                     style: "currency",
-                                    currency: row.currency,
+                                    currency: row.author.currency,
                                 })
                             }
                         </td>
