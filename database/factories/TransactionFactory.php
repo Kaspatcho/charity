@@ -21,7 +21,7 @@ class TransactionFactory extends Factory
         return [
             'user_id' => User::factory(),
             'category_id' => Category::factory(),
-            'amount' => fake()->randomFloat(2, 5, 1e4),
+            'amount' => fake()->randomFloat(2, 5, 1e3),
             'date' => fake()->dateTimeBetween('-1 week', '+2 months'),
             'description' => fake()->sentence(),
             'recurring' => fake()->boolean(10)

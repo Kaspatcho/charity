@@ -21,7 +21,7 @@ class BudgetFactory extends Factory
         return [
             'user_id' => User::factory(),
             'category_id' => Category::factory(),
-            'amount' => fake()->randomFloat(2, 0, 1e5),
+            'amount' => fake()->randomFloat(2, 0, 1e4),
             'start_date' => fake()->dateTimeBetween('-5 days', 'now'),
             'end_date' => fake()->dateTimeBetween('now', '+3 weeks'),
         ];
