@@ -23,3 +23,7 @@ export async function getBalance() {
 export async function saveTransaction(form) {
     return (await axios.post('/api/transaction', form, { headers: { 'Content-Type': 'application/json' } }));
 }
+
+export async function saveCategory(form) {
+    return (await axios.post('/api/category', form, { headers: { 'Content-Type': 'application/json' } }));
+}

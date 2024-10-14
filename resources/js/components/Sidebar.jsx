@@ -22,6 +22,10 @@ export default function Sidebar() {
             <a href="/transaction/new">
                 <p className="p-2">Nova Transação</p>
             </a>
+
+            <a href="/category/new">
+                <p className="p-2">Nova Categoria</p>
+            </a>
         </div>
     );
 }

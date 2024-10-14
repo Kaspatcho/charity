@@ -235,6 +235,7 @@ return [
         'modality' => 'modalidade',
         'category' => 'categoria',
         'amount' => 'valor',
+        'type' => 'tipo',
         'recurring' => 'recorrente',
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento'

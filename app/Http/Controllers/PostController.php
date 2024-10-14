@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Transaction;
 use App\Rules\CategoryBelongsToUser;
 use Illuminate\Http\Request;
@@ -27,6 +28,21 @@ class PostController extends Controller
             'category_id' => $request->input('category'),
             ...$request->only(['amount', 'date', 'recurring', 'description'])
         ]);
+
+       return true;
+    }
+
+    public function category(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required|in:income,expense',
+       ]);
+
+       Category::create([
+            'user_id' => $request->user()->id,
+            ...$request->only(['name', 'type'])
+       ]);
 
        return true;
     }
