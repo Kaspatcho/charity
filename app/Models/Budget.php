@@ -17,6 +17,11 @@ class Budget extends Model
         'end_date',
     ];
 
+    protected $casts = [
+        'start_date'  => 'date:d/m/Y',
+        'end_date'  => 'date:d/m/Y',
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
