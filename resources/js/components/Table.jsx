@@ -4,7 +4,7 @@ export default function Table({ head, children, title="Tabela" }) {
     return (
         <div className="container mt-5">
             <h3 className="text-center mb-4">{title}</h3>
-            <div className="table-responsive" style={{maxHeight: '70vh', overflowY: 'scroll'}}>
+            <div className="table-responsive">
                 <table className="table table-bordered table-striped">
                     <thead className="thead-dark">
                         <tr>

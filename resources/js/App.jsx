@@ -10,7 +10,7 @@ import Budgets from './pages/Budgets';
 export default function App() {
     return (
         <div>
-            <div className="row mb-4">
+            <div className="row mb-5">
                 <Navbar />
             </div>
             <div className="row">

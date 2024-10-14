@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Sidebar() {
     return (
-        <div className="d-flex flex-column justify-content-center">
+        <div className="d-flex flex-column justify-content-center sidebar">
             <a href="/">
                 <p className="p-2">Painel</p>
             </a>
