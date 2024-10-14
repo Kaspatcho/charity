@@ -4,15 +4,19 @@ export default function Sidebar() {
     return (
         <div className="d-flex flex-column justify-content-center">
             <a href="/">
-                <p className="p-2">Dashboard</p>
+                <p className="p-2">Painel</p>
             </a>
 
             <a href="/transactions">
-                <p className="p-2">Transactions</p>
+                <p className="p-2">Transações</p>
             </a>
 
             <a href="/categories">
-                <p className="p-2">Categories</p>
+                <p className="p-2">Categorias</p>
+            </a>
+
+            <a href="/budgets">
+                <p className="p-2">Orçamentos</p>
             </a>
         </div>
     );

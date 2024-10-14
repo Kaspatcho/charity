@@ -12,7 +12,7 @@ export default function Categories() {
         fetchData()
     }, []);
 
-    return <Table head={['Categoria', 'Tipo']}>
+    return <Table head={['Categoria', 'Tipo']} title="Categorias">
         {categories.map((row, index) =>
             <tr key={index}>
                 <td key={`name${index}`}>{row.name}</td>
