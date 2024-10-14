@@ -83,8 +83,7 @@ npm run dev
 ```
 
 ## Utilização
-A aplicação estará disponível em:
-- Frontend: http://localhost:8080
+A aplicação estará disponível em `http://localhost:8080`
 
 ## Estrutura do Docker Compose
 O arquivo docker-compose.yml configura três serviços:
