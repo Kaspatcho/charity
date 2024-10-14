@@ -8,6 +8,7 @@ import Categories from './pages/Categories';
 import Budgets from './pages/Budgets';
 import NewTransaction from './pages/NewTransaction';
 import NewCategory from './pages/NewCategory';
+import NewBudget from './pages/NewBudget';
 
 export default function App() {
     return (
@@ -28,6 +29,7 @@ export default function App() {
                             <Route path="/budgets" element={<Budgets />} />
                             <Route path="/transaction/new" element={<NewTransaction />} />
                             <Route path="/category/new" element={<NewCategory />} />
+                            <Route path="/budget/new" element={<NewBudget />} />
                         </Routes>
                     </Router>
                 </div>

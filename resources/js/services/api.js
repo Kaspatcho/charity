@@ -27,3 +27,7 @@ export async function saveTransaction(form) {
 export async function saveCategory(form) {
     return (await axios.post('/api/category', form, { headers: { 'Content-Type': 'application/json' } }));
 }
+
+export async function saveBudget(form) {
+    return (await axios.post('/api/budget', form, { headers: { 'Content-Type': 'application/json' } }));
+}

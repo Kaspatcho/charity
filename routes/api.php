@@ -12,3 +12,4 @@ Route::get('/balance', [ ApiController::class, 'balance' ]);
 
 Route::post('/transaction', [ PostController::class, 'transaction' ]);
 Route::post('/category', [ PostController::class, 'category' ]);
+Route::post('/budget', [ PostController::class, 'budget' ]);

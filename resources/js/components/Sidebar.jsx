@@ -26,6 +26,10 @@ export default function Sidebar() {
             <a href="/category/new">
                 <p className="p-2">Nova Categoria</p>
             </a>
+
+            <a href="/budget/new">
+                <p className="p-2">Novo Orçamento</p>
+            </a>
         </div>
     );
 }
