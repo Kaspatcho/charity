@@ -19,3 +19,7 @@ export async function getBudgetProgress() {
 export async function getBalance() {
     return (await axios.get('/api/balance')).data;
 }
+
+export async function saveTransaction(form) {
+    return (await axios.post('/api/transaction', form, { headers: { 'Content-Type': 'application/json' } }));
+}

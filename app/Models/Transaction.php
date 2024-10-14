@@ -18,6 +18,10 @@ class Transaction extends Model
         'recurring',
     ];
 
+    protected $casts = [
+        'date'  => 'date:d/m/Y',
+    ];
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

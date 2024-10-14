@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Transactions from './pages/Transactions';
 import Categories from './pages/Categories';
 import Budgets from './pages/Budgets';
+import NewTransaction from './pages/NewTransaction';
 
 export default function App() {
     return (
@@ -24,6 +25,7 @@ export default function App() {
                             <Route path="/transactions" element={<Transactions />} />
                             <Route path="/categories" element={<Categories />} />
                             <Route path="/budgets" element={<Budgets />} />
+                            <Route path="/transaction/new" element={<NewTransaction />} />
                         </Routes>
                     </Router>
                 </div>

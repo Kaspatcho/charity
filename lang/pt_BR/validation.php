@@ -234,6 +234,8 @@ return [
         'complement' => 'complemento',
         'modality' => 'modalidade',
         'category' => 'categoria',
+        'amount' => 'valor',
+        'recurring' => 'recorrente',
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento'
     ],
