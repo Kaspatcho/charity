@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Rules\CategoryBelongsToUser;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -10,7 +11,10 @@ class PostController extends Controller
     public function transaction(Request $request)
     {
         $request->validate([
-            'category' => 'required|exists:categories,id',
+            'category' => [
+                'required',
+                new CategoryBelongsToUser($request->user()->id),
+            ],
             'amount' => 'required|decimal:0,2',
             'date' => 'required|date',
             'recurring' => 'required|boolean',
