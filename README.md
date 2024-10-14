@@ -1,4 +1,4 @@
-# Gerenciador de Finanças Pessoais
+# Charity
 
 Este é um projeto de aplicação web para gerenciar finanças pessoais,
 que permite rastrear receitas e despesas, definir orçamentos e visualizar tendências de gastos.
