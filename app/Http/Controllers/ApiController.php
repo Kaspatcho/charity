@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -21,5 +22,12 @@ class ApiController extends Controller
                 'type' => $t->category->type,
                 'currency' => $t->author->currency,
             ]);
+    }
+
+    public function categories(Request $request)
+    {
+        return Category::query()
+        ->where('user_id', $request->user()->id)
+        ->get(['name', 'type']);
     }
 }
